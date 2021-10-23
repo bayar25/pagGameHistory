@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historias Locas Comu</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+      @import url("https://fonts.googleapis.com/css?family=Hachi+Maru+Pop&display=swap");
+      body {
+        font-family: "Poppins";
+        overflow: hidden;
+      }
+      .fond {
+        background-image: url(./assects/OasisFondo.png);
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: -10;
+        opacity: 0.5;
+      }
+      #app {
+        width: 100vw;
+        height: 100vh;
+        overflow-y: auto;
+      }
+      .hachi {
+        font-family: "Hachi Maru Pop";
+      }
+      .listStyle {
+        background-color: #ffcd39;
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white">
+    <div class="fond"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./info.js"></script>
+    <div id="app" class="">
+      <div class="container p-4 text-center">
+        <h1
+          class="
+            col-auto
+            hachi
+            p-5
+            m-4
+            bg-dark
+            shadow-lg
+            text-warning
+            fw-bold
+            border border-4 border-warning
+            rounded-pill
+          "
+        >
+          Historias Locas Comu
+        </h1>
+        <p>
+          Hola la miembro de comunidad REMAR te queremos invitar a ser loco,
+          creativo y veloz jajaja...
+        </p>
+        <p>¿Cómo?</p>
+        <p>
+          Creando una historia, pero tienes que cumplir con las siguientes
+          reglas.
+        </p>
+        <p>Da click en el boton para ver tus reglas</p>
+        <input
+          class="
+            hachi
+            p-4
+            m-4
+            bg-dark
+            shadow
+            text-light
+            fw-bold
+            border border-4 border-success
+            rounded-pill
+          "
+          type="button"
+          value="Ver Reglas"
+          v-on:click="click"
+        />
+        <div v-if="active" class="container p-2text-center">
+          <h4>Tienes que crear una historia de:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul class="list-group list-group-flush mb-2">
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                >
+                  {{typeCreateHistory}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4>Tienes que usar los siguientes lugares:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul
+                class="list-group list-group-flush list-group-horizontal mb-2"
+              >
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                  v-for="item in place"
+                >
+                  {{item}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4>Tines que usar los siguientes objetos:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul
+                class="list-group list-group-flush list-group-horizontal mb-2"
+              >
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                  v-for="item in object"
+                >
+                  {{item}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4>Tienes que usar personajes de ficción del:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul
+                class="list-group list-group-flush list-group-horizontal mb-2"
+              >
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                  v-for="item in personalFiccion"
+                >
+                  {{item}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4>Deben de aparecer las siguientes personas:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul class="list-group list-group-flush mb-2">
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                  v-for="item in participants"
+                >
+                  {{item}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4>y contaras la historia al publico como si fuera de:</h4>
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <ul class="list-group list-group-flush mb-2">
+                <li
+                  class="
+                    list-group-item
+                    text-dark
+                    border-0
+                    rounded-pill
+                    shadow
+                    m-3
+                    listStyle
+                  "
+                >
+                  {{typeTellHistory}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          typeCreateHistory: "",
+          typeTellHistory: "",
+          place: [],
+          object: [],
+          personalFiccion: [],
+          participants: [],
+          active: false,
+        },
+        methods: {
+          randomPlace() {
+            this.place = [];
+            let indexArray = this.shuffle([], 5, 0, info.place.length - 1);
+            for (let i = 0; i < 3; i++) {
+              this.place.push(info.place[indexArray[i]]);
+            }
+          },
+          randomObject() {
+            this.object = [];
+            let indexArray = this.shuffle([], 6, 0, info.object.length - 1);
+            for (let i = 0; i < 5; i++) {
+              this.object.push(info.object[indexArray[i]]);
+            }
+          },
+          randomPersonalFiccion() {
+            this.personalFiccion = [];
+            let indexArray = this.shuffle(
+              [],
+              6,
+              0,
+              info.personalFiccion.length - 1
+            );
+            for (let i = 0; i < 2; i++) {
+              this.personalFiccion.push(info.personalFiccion[indexArray[i]]);
+            }
+          },
+          randomParticipants() {
+            this.participants = [];
+            let indexArray = this.shuffle(
+              [],
+              6,
+              0,
+              info.participants.length - 1
+            );
+            for (let i = 0; i < 4; i++) {
+              this.participants.push(info.participants[indexArray[i]]);
+            }
+          },
+          randomTypeHistoy() {
+            let indexArray = this.shuffle(
+              [],
+              5,
+              0,
+              info.typeCreateHistory.length - 1
+            );
+            this.typeCreateHistory = info.typeCreateHistory[indexArray[0]];
+            this.typeTellHistory = info.typeCreateHistory[indexArray[1]];
+          },
+          click(e) {
+            this.randomTypeHistoy();
+            this.randomPlace();
+            this.randomObject();
+            this.randomPersonalFiccion();
+            this.randomParticipants();
+            this.active = true;
+          },
+          evalueValInArray(array, value) {
+            for (let i = 0; i < array.length; i++) {
+              if (value == array[i]) {
+                return false;
+              }
+            }
+            return true;
+          },
+          shuffle(array, length, min, max) {
+            while (true) {
+              let val = Math.floor(Math.random() * (max - min) + min);
+              if (this.evalueValInArray(array, val)) {
+                array.push(val);
+                if (array.length < length) {
+                  array = this.shuffle(array, length - array.length, min, max);
+                } else return array;
+              }
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
